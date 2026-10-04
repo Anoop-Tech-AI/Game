@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EXTREME CITY DRIVE — Open-World Arcade Driving</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏎️</text></svg>">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      
+      <canvas id="webgl-canvas"></canvas>
+
+      <div id="speed-trap-flash"></div>
+
+      <div id="hud-container">
+        
+        <header id="top-bar">
+          <div class="logo-badge">
+            <span class="logo-accent">EXTREME</span>
+            <span class="logo-sub">CITY DRIVE</span>
+            <span class="milestone-tag">ARCADE OPEN WORLD</span>
+          </div>
+
+          <div class="hud-wallet">
+            <div class="wallet-chip cash">
+              <span class="chip-label">CASH</span>
+              <span class="chip-val" id="hud-cash-val">$2,500</span>
+            </div>
+            <div class="wallet-chip rep">
+              <span class="chip-label">REP</span>
+              <span class="chip-val" id="hud-rep-val">100</span>
+            </div>
+          </div>
+
+          <div class="header-right">
+            <div id="district-badge">
+              <span class="district-icon">📍</span>
+              <span id="district-label">DOWNTOWN</span>
+            </div>
+            <div class="time-weather">
+              <span id="weather-indicator">☀️ CLEAR</span>
+              <span id="tod-indicator">SUNLIT AFTERNOON</span>
+              <span class="fps-counter" id="fps-counter">60 FPS</span>
+              <button id="btn-quick-settings" class="btn-hud-chip" title="Settings [ESC]">⚙️</button>
+            </div>
+          </div>
+        </header>
+
+        <div id="minimap-container">
+          <div class="minimap-header">GPS NAV • RADAR</div>
+          
+        </div>
+
+        <div id="mission-hud-box" class="hidden">
+          <div class="mission-hud-top">
+            <span class="mission-tag">ACTIVE MISSION</span>
+            <span class="mission-timer" id="mission-timer">00:30</span>
+          </div>
+          <h4 id="mission-title">AIRPORT RUNWAY TOP GUN</h4>
+          <p id="mission-status">Accelerate down the runway to hit > 220 km/h!</p>
+        </div>
+
+        <div id="stunt-banner" class="hidden"></div>
+
+        <div id="interaction-prompt" class="hidden">
+          <span class="key-badge">E</span> START MISSION
+        </div>
+
+        <div id="cluster-container">
+          <div class="speedometer">
+            <div class="speed-value" id="speed-val">0</div>
+            <div class="speed-unit">KM/H</div>
+            <div class="gear-display">
+              <span class="gear-label">GEAR</span>
+              <span class="gear-value" id="gear-val">1</span>
+            </div>
+
+            <div class="rpm-meter">
+              <div class="rpm-bar" id="rpm-bar"></div>
+            </div>
+            <div class="rpm-ticks">
+              <span>0</span><span>2</span><span>4</span><span>6</span><span>8k</span>
+            </div>
+
+            <div class="nitro-container">
+              <div class="nitro-label">NOS BOOST</div>
+              <div class="nitro-meter">
+                <div class="nitro-bar" id="nitro-bar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="controls-panel">
+          <div class="controls-title">CONTROLS</div>
+          <div class="key-row"><kbd>W</kbd> / <kbd>↑</kbd> <span>Drive / Accelerate</span></div>
+          <div class="key-row"><kbd>S</kbd> / <kbd>↓</kbd> <span>Brake / Reverse</span></div>
+          <div class="key-row"><kbd>A</kbd> <kbd>D</kbd> / <kbd>←</kbd> <kbd>→</kbd> <span>Steer Left / Right</span></div>
+          <div class="key-row"><kbd>SPACE</kbd> <span>Handbrake / Drift</span></div>
+          <div class="key-row"><kbd>SHIFT</kbd> / <kbd>N</kbd> <span>Nitro Boost (NOS)</span></div>
+          <div class="key-row"><kbd>G</kbd> <span>Garage & Customization</span></div>
+          <div class="key-row"><kbd>C</kbd> <span>Switch Camera Mode</span></div>
+          <div class="key-row"><kbd>T</kbd> <span>Cycle Time of Day</span></div>
+          <div class="key-row"><kbd>K</kbd> <span>Cycle Weather (Rain/Fog)</span></div>
+          <div class="key-row"><kbd>H</kbd> <span>Hazard Blinkers</span></div>
+          <div class="key-row"><kbd>L</kbd> <span>Headlights</span></div>
+          <div class="key-row"><kbd>ESC</kbd> <span>Settings & Controls</span></div>
+          <div class="key-row"><kbd>R</kbd> <span>Reset Vehicle</span></div>
+        </div>
+
+        <div id="camera-badge">CAM: <span id="cam-name">CHASE (DYNAMIC)</span></div>
+
+        <div id="toast" class="toast-hidden"></div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
